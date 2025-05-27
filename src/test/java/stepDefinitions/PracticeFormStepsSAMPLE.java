@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import hooks.Hooks;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -12,14 +13,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PracticeFormStepsSAMPLE {
 
     private WebDriver driver;
 
-    public PracticeFormStepsSAMPLE() {
-        this.driver = Hooks.driver;
-    }
+    public PracticeFormStepsSAMPLE() {this.driver = Hooks.driver;}
 
     @Given("I navigate to the basic HTML form test page")
     public void i_navigate_to_the_basic_html_form_test_page() {
@@ -63,4 +66,53 @@ public class PracticeFormStepsSAMPLE {
         String pageText = driver.getPageSource();
         Assert.assertTrue("Username not found in results", pageText.contains(username));
     }
+//
+//    @Given ("I navigate to the section page")
+//    public void INavigateToTheSectionPage() {
+//        driver.get("https://demowebshop.tricentis.com/books");
+//    }
+//    @When("I open a product")
+//    public void i_open_a_product() {
+//       driver.findElement(By.xpath("//div[@class='item-box'][1]")).click();
+//    }
+//    @And("I am redirected to the product page")
+//    public void iAmRedirectedToTheProductPage(){
+//        assertEquals("https://demowebshop.tricentis.com/computing-and-internet", driver.getCurrentUrl());
+//        System.out.println(driver.getCurrentUrl());
+//    }
+
+    @When("I open the {string}")
+    public void i_open_the_product(String product)  {
+        driver.get(product);
+    }
+
+    @Then("I can see all required information about this product")
+    public void iSeeAllRequiredInformation() {
+        try{
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='product-name']")).isDisplayed());
+        } catch (Exception e) { System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no name");
+        }
+        try {
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='short-description']")).isDisplayed());
+        } catch (Exception e){
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+        }
+        try {
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='product-reviews-overview']")).isDisplayed());
+        } catch (Exception e) {
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+          }
+        try {
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='product-price']")).isDisplayed());
+        } catch (Exception e) {
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+        }
+        try {
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='full-description']")).isDisplayed());
+        } catch (Exception e) {
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+        }
+
+    }
+
 }

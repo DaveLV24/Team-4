@@ -17,7 +17,8 @@ import io.cucumber.junit.CucumberOptions;
         // feature word - provides location of feature file
         features = "src/test/resources",
         // glue word = provides path to steps definitions class
-        glue = {"stepDefinitions", "hooks"}
+        glue = {"stepDefinitions", "hooks"},
+        tags = "@Regression"
 //      ,tags = "(@smoke or @regression) and not (@bug or @wip)"
         ,monochrome = true
 // "@regression" - will run only tests with this tag
