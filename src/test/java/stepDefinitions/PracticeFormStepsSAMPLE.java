@@ -66,26 +66,26 @@ public class PracticeFormStepsSAMPLE {
         String pageText = driver.getPageSource();
         Assert.assertTrue("Username not found in results", pageText.contains(username));
     }
-//
-//    @Given ("I navigate to the section page")
-//    public void INavigateToTheSectionPage() {
-//        driver.get("https://demowebshop.tricentis.com/books");
-//    }
-//    @When("I open a product")
-//    public void i_open_a_product() {
-//       driver.findElement(By.xpath("//div[@class='item-box'][1]")).click();
-//    }
-//    @And("I am redirected to the product page")
-//    public void iAmRedirectedToTheProductPage(){
-//        assertEquals("https://demowebshop.tricentis.com/computing-and-internet", driver.getCurrentUrl());
-//        System.out.println(driver.getCurrentUrl());
-//    }
 
-    @When("I open the {string}")
-    public void i_open_the_product(String product)  {
-        driver.get(product);
+    @Given ("I navigate to the section page")
+    public void INavigateToTheSectionPage() {
+        driver.get("https://demowebshop.tricentis.com/books");
+    }
+    @When("I open a product")
+    public void i_open_a_product() {
+       driver.findElement(By.xpath("(//div[@class='item-box'])[1]//a")).click();
+    }
+    @And("I am redirected to the product page")
+    public void iAmRedirectedToTheProductPage(){
+        assertEquals("https://demowebshop.tricentis.com/computing-and-internet", driver.getCurrentUrl());
+        System.out.println(driver.getCurrentUrl());
     }
 
+//    @When("I open the {string}")
+//    public void i_open_the_product(String product)  {
+//        driver.get(product);
+//    }
+//
     @Then("I can see all required information about this product")
     public void iSeeAllRequiredInformation() {
         try{
