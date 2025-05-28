@@ -60,17 +60,17 @@ public class PracticeFormStepsSAMPLE {
         try {
             Assert.assertTrue(driver.findElement(By.xpath("//div[@class='product-reviews-overview']")).isDisplayed());
         } catch (Exception e) {
-            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no review");
           }
         try {
             Assert.assertTrue(driver.findElement(By.xpath("//div[@class='product-price']")).isDisplayed());
         } catch (Exception e) {
-            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no price");
         }
         try {
             Assert.assertTrue(driver.findElement(By.xpath("//div[@class='full-description']")).isDisplayed());
         } catch (Exception e) {
-            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " has no description");
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " has no specification");
         }
     }
     @Then("I can see \"Add to compare list\" button is displayed")
@@ -102,7 +102,7 @@ public class PracticeFormStepsSAMPLE {
         try {
             Assert.assertTrue(driver.findElement(By.xpath("//div[@class=\"attributes\"]")).isDisplayed());
         } catch (Exception e) {
-            System.out.println("For this product: " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " " + " Avaliable option attributes are  not displayed");
+            System.out.println("For this product: " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " " + " Available option attributes are  not displayed");
         }
     }
 
