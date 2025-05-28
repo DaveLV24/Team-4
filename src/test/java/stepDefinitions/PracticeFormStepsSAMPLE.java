@@ -71,11 +71,18 @@ public class PracticeFormStepsSAMPLE {
     public void INavigateToTheBookSectionPage() {
         driver.get("https://demowebshop.tricentis.com/books");
     }
-    @Given ("I navigate to subsection \"Desktop\" page")
+    @Given ("I navigate to the subsection \"Desktop\" page")
     public void INavigateToTheDesktopSubsectionPage() {
         driver.get("https://demowebshop.tricentis.com/desktops");
     }
-
+    @Given ("I navigate to the \"Camera, photo\" subsection page")
+    public void INavigateToTheCameraPhotoSubsectionPage() {
+        driver.get("https://demowebshop.tricentis.com/camera-photo");
+    }
+    @Given ("I navigate to the \"Gift card\" section page")
+    public void INavigateToTheGiftCardSectionPage() {
+        driver.get("https://demowebshop.tricentis.com/gift-cards");
+    }
     @When("I open a {int}")
     public void i_open_a_product(int ind) {
         String xpath = String.format("(//div[@class='item-box'])[%d]//a", ind);
