@@ -99,4 +99,24 @@ Feature: Search tests
     And In Sort By option choose Name: A to Z
     Then Check that items are in alphabetical order
 
+  @TC-005-AO
+    Scenario: Check for page pagination
+    Given Open page home page
+    When Type "and" in the search Text-Field
+    And Press search button
+    And Check checkbox - Advanced search
+    And Check checkbox - Search in product description
+    And Press search button in search box
+    Then Check for the existence of pagination buttons
+
+  @TC-006-AO
+  Scenario: Sort list by price: low to high
+    Given Open page home page
+    When Type "and" in the search Text-Field
+    And Press search button
+    And Check checkbox - Advanced search
+    And Check checkbox - Search in product description
+    And Press search button in search box
+    And In Sort By option choose Price: Low to High
+    Then Check that item prices are in increasing order
 

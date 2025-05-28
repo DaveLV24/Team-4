@@ -22,7 +22,9 @@ public class SearchSteps {
     private WebDriver driver;
     private int countOfMenuItems = 0;
     private int countOfSearchResultItems = 0;
-    List<String> listToSort = new ArrayList<>();
+    List<String> stringListWithoutSort = new ArrayList<>();
+    List<Double> doubleListWithoutSort = new ArrayList<>();
+
 
     public SearchSteps() {
         this.driver = Hooks.driver;
@@ -88,8 +90,20 @@ public class SearchSteps {
         assertTrue(sortByDropdown.isDisplayed());
         Select dropdown = new Select(sortByDropdown);
 
-        dropdown.selectByValue("https://demowebshop.tricentis.com/search?q=and&as=true&cid=0&isc=false&mid=0&pf=&pt=&sid=true&orderby=5");
+        dropdown.selectByVisibleText("Name: A to Z");
     }
+
+    @And("^In Sort By option choose Price: Low to High$")
+    public void inSortByOptionChoosePriceLowToHigh() throws Throwable {
+        WebElement sortByDropdown = driver.findElement(By.id("products-orderby"));
+        assertTrue(sortByDropdown.isEnabled());
+        assertTrue(sortByDropdown.isDisplayed());
+        Select dropdown = new Select(sortByDropdown);
+
+        dropdown.selectByVisibleText("Price: Low to High");
+    }
+
+
 
     @Then("^Find search field$")
     public void findSearchField() throws Throwable {
@@ -111,11 +125,12 @@ public class SearchSteps {
 
     @Then("^Check that items are in alphabetical order$")
     public void checkThatItemsAreInAlphabeticOrder() throws Throwable {
+        stringListWithoutSort.clear();
         while (true) {
             List<WebElement> list = driver.findElements(By.cssSelector(".product-title"));
 
             for (WebElement title : list) {
-                listToSort.add(title.getText());
+                stringListWithoutSort.add(title.getText());
             }
 
             List<WebElement> nextPage = driver.findElements(By.cssSelector(".next-page"));
@@ -125,9 +140,47 @@ public class SearchSteps {
                 break;
             }
         }
-        List<String> expectedList = listToSort;
-        Collections.sort(listToSort);
-        assertEquals(expectedList, listToSort);
+        List<String> expectedList = new ArrayList<>(stringListWithoutSort);
+        Collections.sort(expectedList);
+        assertEquals(expectedList, stringListWithoutSort);
     }
+
+    @Then("^Check that item prices are in increasing order$")
+    public void checkThatItemPriceAreInIncreasingOrder() throws Throwable {
+        doubleListWithoutSort.clear();
+        while (true) {
+            List<WebElement> list = driver.findElements(By.cssSelector(".actual-price"));
+
+            for (WebElement title : list) {
+                String digitsWithoutChars = title.getText().replaceAll("[^\\d.]+","");
+                doubleListWithoutSort.add(Double.valueOf(digitsWithoutChars));
+            }
+
+            List<WebElement> nextPage = driver.findElements(By.cssSelector(".next-page"));
+            if (!nextPage.isEmpty() && nextPage.get(0).isDisplayed()) {
+                nextPage.get(0).click();
+            } else {
+                break;
+            }
+        }
+        List<Double> expectedList = new ArrayList<>(doubleListWithoutSort);
+        Collections.sort(expectedList);
+        assertEquals(expectedList, doubleListWithoutSort);
+    }
+
+    @Then("^Check for the existence of pagination buttons$")
+    public void checkForTheExistenceOfPaginationButtons() throws Throwable {
+        assertTrue(driver.findElement(By.className("current-page")).isDisplayed());
+
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='2']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='2']")).isEnabled());
+
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='3']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='3']")).isEnabled());
+
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='4']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='4']")).isEnabled());
+    }
+
 
 }
