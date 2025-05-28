@@ -29,6 +29,11 @@ public class PracticeFormStepsSAMPLE {
     public void INavigateToTheBookSectionPage() {
         driver.get("https://demowebshop.tricentis.com/books");
     }
+    @Given ("I navigate to subsection \"Desktop\" page")
+    public void INavigateToTheDesktopSubsectionPage() {
+        driver.get("https://demowebshop.tricentis.com/desktops");
+    }
+
     @When("I open a {int}")
     public void i_open_a_product(int ind) {
         String xpath = String.format("(//div[@class='item-box'])[%d]//a", ind);
@@ -65,7 +70,7 @@ public class PracticeFormStepsSAMPLE {
         try {
             Assert.assertTrue(driver.findElement(By.xpath("//div[@class='full-description']")).isDisplayed());
         } catch (Exception e) {
-            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "has no description");
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " has no description");
         }
     }
     @Then("I can see \"Add to compare list\" button is displayed")
@@ -79,7 +84,7 @@ public class PracticeFormStepsSAMPLE {
     @And("I can see \"Add to Cart\" button is displayed")
     public void iSeeAddToCartButtonIsDisplayed() {
         try {
-            Assert.assertTrue(driver.findElement(By.id("add-to-cart-button-13")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.cssSelector(".button-1.add-to-cart-button")).isDisplayed());
         } catch (Exception e) {
             System.out.println("For this product  " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "\" Add to Cart \" button is not displayed");
         }
@@ -87,9 +92,18 @@ public class PracticeFormStepsSAMPLE {
     @And("I can see \"Add to Wish List\" button is displayed")
     public void iSeeAddToWishListButtonIsDisplayed() {
         try {
-            Assert.assertTrue(driver.findElement(By.id("add-to-wishlist-button-78")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.cssSelector(".button-2.add-to-wishlist-button")).isDisplayed());
         } catch (Exception e) {
             System.out.println("For this product  " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + "\" Add to Wishlist \" button is not displayed");
         }
     }
+     @And("I can see \"Available options\" attributes are displayed")
+    public void iSeeAvaliableOptionsAttributesAreDisplayed() {
+        try {
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class=\"attributes\"]")).isDisplayed());
+        } catch (Exception e) {
+            System.out.println("For this product: " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " " + " Avaliable option attributes are  not displayed");
+        }
+    }
+
 }
