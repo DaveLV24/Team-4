@@ -1,4 +1,4 @@
-@Regression
+@Sample
 
 Feature: Basic HTML Form Testing
   As a user
