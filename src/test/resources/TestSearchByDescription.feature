@@ -11,6 +11,7 @@ Feature: regression
     Then I choose Search In product descriptions
     Then I click the search button in a search block
     Then Click on first product which is displayed
+    And The product description should contain sample "BrightView"
 
   Scenario Outline: Search in product descriptions
     Given I am on the home page
@@ -21,6 +22,7 @@ Feature: regression
     Then I choose Search In product descriptions
     Then I click the search button in a search block
     Then Click on first product which is displayed
+    And The product description should contain "<keyword>"
     Examples:
       | keyword     |
       | BrightView  |
@@ -34,6 +36,7 @@ Feature: regression
     Then I choose Advanced search
     Then In Advanced search block select a parent category Electronics
     Then I click the search button in a search block
+    And The result is displayed "No products were found that matched your criteria"
     Then In Advanced search block choose the box Automatically search subcategories
     Then I click the search button in a search block
     And Products with sample "phone" in the title should be displayed
