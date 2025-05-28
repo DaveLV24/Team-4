@@ -36,7 +36,7 @@ public class AddToCartSteps {
     }
 
     @Then("^I click \"([^\"]*)\" in the menu$")
-    public void clickBook(String product)
+    public void clickProductCategory(String product)
     {
         String productLower = product.toLowerCase();
         driver.findElement(By.cssSelector("a[href='/" + productLower + "']")).click();
