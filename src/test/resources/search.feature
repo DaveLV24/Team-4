@@ -87,3 +87,16 @@ Feature: Search tests
       | diam         |
       | card         |
       | book         |
+
+  @TC-004-AO
+  Scenario: Sort list by name
+    Given Open page home page
+    When Type "and" in the search Text-Field
+    And Press search button
+    And Check checkbox - Advanced search
+    And Check checkbox - Search in product description
+    And Press search button in search box
+    And In Sort By option choose Name: A to Z
+    Then Check that items are in alphabetical order
+
+
