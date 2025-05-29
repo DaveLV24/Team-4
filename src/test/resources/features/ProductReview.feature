@@ -24,3 +24,21 @@ Feature: product reviews
     Then I submit a review
     And I verify the success message
 
+  Scenario: Product review without purchasing a product
+    When User is in the demo shop page
+    Then I click register
+    And User registers
+    Then I click "Books" in the menu
+    Then I select "Fiction" in "" subcategory
+    Then I click on review
+    And I write a review with "Review title" and "This is a good product"
+    Then I submit a review
+    And I verify the success message
+
+    Scenario: Product review without user being logged in
+      When User is in the demo shop page
+      Then I click "Books" in the menu
+      Then I select "Fiction" in "" subcategory
+      Then I click on review
+      Then I check the review box message
+      And I check review title and message input fields are blocked

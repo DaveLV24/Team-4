@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ProductReviewSteps {
     private WebDriver driver;
@@ -127,5 +128,16 @@ public class ProductReviewSteps {
     public void iVerifyTheSuccessMessage() {
         WebElement result = driver.findElement(By.className("result"));
         assertEquals("Product review is successfully added.", result.getText().trim());
+    }
+
+    @Then("^I check the review box message$")
+    public void iCheckTheReviewBoxMessage() {
+        assertEquals("Only registered users can write reviews", driver.findElement(By.className("validation-summary-errors")).getText().trim());
+    }
+
+    @And("^I check review title and message input fields are blocked$")
+    public void iCheckReviewTitleAndMessageInputFieldsAreBlocked() {
+        assertEquals("true", driver.findElement(By.id("AddProductReview_Title")).getAttribute("disabled"));
+        assertEquals("true", driver.findElement(By.id("AddProductReview_ReviewText")).getAttribute("disabled"));
     }
 }
