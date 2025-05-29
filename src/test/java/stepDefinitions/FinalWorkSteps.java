@@ -77,6 +77,12 @@ public class FinalWorkSteps {
         } catch (Exception e) {
             System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " has no specification");
         }
+        try {
+            Assert.assertTrue(driver.findElement(By.cssSelector("div.picture img[id^=\"main-product-img\"]")).isDisplayed());
+        } catch (Exception e) {
+            System.out.println("This product " + driver.findElement(By.xpath("//div[@class='product-name']")).getText() + " has no image");
+        }
+
     }
     @Then("I can see \"Add to compare list\" button is displayed")
     public void iSeeAddToCompareListButtonIsDisplayed() {
