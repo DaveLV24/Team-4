@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,6 +43,8 @@ public class SearchSteps {
 
     @When("^Type \"([^\"]*)\" in the search Text-Field$")
     public void typeValueInTheSearchTextField(String searchValue) throws Throwable {
+        assertTrue(driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).isEnabled());
+        assertTrue(driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).isDisplayed());
         driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).sendKeys(searchValue);
     }
 
@@ -50,6 +53,13 @@ public class SearchSteps {
         assertTrue(driver.findElement(By.cssSelector(".search-box-button")).isDisplayed());
         assertTrue(driver.findElement(By.cssSelector(".search-box-button")).isEnabled());
         driver.findElement(By.cssSelector(".search-box-button")).click();
+    }
+
+    @When("^Keep search field empty$")
+    public void keepSearchFieldEmpty() throws Throwable {
+        assertTrue(driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).isEnabled());
+        assertTrue(driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).isDisplayed());
+        driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).clear();
     }
 
     @And("^Count elements in the item menu$")
@@ -104,7 +114,6 @@ public class SearchSteps {
     }
 
 
-
     @Then("^Find search field$")
     public void findSearchField() throws Throwable {
         assertTrue(driver.findElement(By.cssSelector(".search-box-text#small-searchterms")).isDisplayed());
@@ -152,7 +161,7 @@ public class SearchSteps {
             List<WebElement> list = driver.findElements(By.cssSelector(".actual-price"));
 
             for (WebElement title : list) {
-                String digitsWithoutChars = title.getText().replaceAll("[^\\d.]+","");
+                String digitsWithoutChars = title.getText().replaceAll("[^\\d.]+", "");
                 doubleListWithoutSort.add(Double.valueOf(digitsWithoutChars));
             }
 
@@ -182,5 +191,11 @@ public class SearchSteps {
         assertTrue(driver.findElement(By.xpath("//*[contains(@class,'individual-page')]//a[text()='4']")).isEnabled());
     }
 
+    @Then("^Check alert message$")
+    public void checkAlertMessage() throws Throwable {
+        Alert alert = driver.switchTo().alert();
+        assertEquals("Please enter some search keyword", alert.getText());
+        alert.accept();
+    }
 
 }
