@@ -5,7 +5,7 @@ Feature: Basic HTML Form Testing
   I want to check if products on Website display required information
 
 @TC001SS1
-  Scenario Outline: Open the product at "Book" section and check information inside
+  Scenario Outline: The product page displays required information (Products in "Book" category)
     Given I navigate to the "Book" section page
     When I open a <product>
     And I am redirected to the product page
@@ -21,7 +21,7 @@ Feature: Basic HTML Form Testing
 
 
 @TC002SS1
-Scenario Outline: Open the product at "Book" section and check required buttons inside
+Scenario Outline: The product page displays required buttons (Products in "Book" category)
   Given I navigate to the "Book" section page
   When I open a <product>
   And I am redirected to the product page
@@ -38,7 +38,7 @@ Examples:
     |  6     |
 
   @TC003SS
-  Scenario Outline: Open the product at "Computers" section, "Desktop" subsection and check if "Available options" are displayed
+  Scenario Outline: The product page displays available options (Products in "Desktop" subcategory)
     Given I navigate to the subsection "Desktop" page
     When I open a <product>
     And I am redirected to the product page
@@ -53,7 +53,7 @@ Examples:
       |  6     |
 
   @TC001SS2
-  Scenario Outline: Open the product at "Electronics" section, "Camera, photo" subsection and check information inside
+  Scenario Outline: The product page displays required information (Products in "Camera, photo" subcategory)
     Given I navigate to the "Camera, photo" subsection page
     When I open a <product>
     And I am redirected to the product page
@@ -65,7 +65,7 @@ Examples:
       |  3     |
       |  4     |
   @TC002SS2
-  Scenario Outline: Open the product at "Electronics" section, "Camera, photo" subsection and check required buttons inside
+  Scenario Outline: The product page displays required buttons (Products in "Camera, photo" subcategory)
     Given I navigate to the "Camera, photo" subsection page
     When I open a <product>
     And I am redirected to the product page
@@ -80,7 +80,7 @@ Examples:
       |  4     |
 
   @TC001SS3
-  Scenario Outline: Open the product at "Gift card" section and check information inside
+  Scenario Outline: The product page displays required information (Products in "Gift card" category)
     Given I navigate to the "Gift card" section page
     When I open a <product>
     And I am redirected to the product page
@@ -93,7 +93,7 @@ Examples:
       |  4     |
 
   @TC002SS3
-  Scenario Outline: Open the product at "Gift card" section and check required buttons inside
+  Scenario Outline: The product page displays required buttons (Products in "Gift card" category)
     Given I navigate to the "Gift card" section page
     When I open a <product>
     And I am redirected to the product page
