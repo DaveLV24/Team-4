@@ -100,7 +100,7 @@ Feature: Search tests
     Then Check that items are in alphabetical order
 
   @TC-005-AO
-    Scenario: Check for page pagination
+  Scenario: Check for page pagination
     Given Open page home page
     When Type "and" in the search Text-Field
     And Press search button
@@ -119,4 +119,12 @@ Feature: Search tests
     And Press search button in search box
     And In Sort By option choose Price: Low to High
     Then Check that item prices are in increasing order
+
+
+  @TC-007-AO
+  Scenario: Check for search alert
+    Given Open page home page
+    When Keep search field empty
+    And Press search button
+    Then Check alert message
 
