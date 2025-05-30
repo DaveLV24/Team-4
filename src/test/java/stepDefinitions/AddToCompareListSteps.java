@@ -2,20 +2,11 @@ package stepDefinitions;
 
 import hooks.Hooks;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pageObjects.ProductListPage;
 import pageObjects.ProductPage;
-import pageObjects.ShoppingCartPage;
-
-import java.util.List;
-import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class AddToCompareListSteps {
     private WebDriver driver;

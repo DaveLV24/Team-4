@@ -6,8 +6,6 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import pageObjects.ProductPage;
 
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ProductReviewSteps {
     private WebDriver driver;
@@ -36,8 +33,7 @@ public class ProductReviewSteps {
     }
 
     @And("User registers")
-    public void userRegisters()
-    {
+    public void userRegisters() {
         driver.findElement(By.id("gender-male")).click();
         driver.findElement(By.id("FirstName")).sendKeys("Test");
         driver.findElement(By.id("LastName")).sendKeys("User");
@@ -50,18 +46,17 @@ public class ProductReviewSteps {
     }
 
     @Then("^I click agree to terms$")
-    public void iClickAgreeToTerms()
-    {
+    public void iClickAgreeToTerms() {
         driver.findElement(By.id("termsofservice")).click();
     }
 
     @And("^I click checkout$")
-    public void iClickCheckout(){
+    public void iClickCheckout() {
         driver.findElement(By.id("checkout")).click();
     }
 
     @Then("^I input billing address fields$")
-    public void iInputBillingAddressFields(){
+    public void iInputBillingAddressFields() {
         List<WebElement> addressDropdown = driver.findElements(By.xpath("//select[@id='billing-address-select']"));
         if (!addressDropdown.isEmpty() && addressDropdown.get(0).isDisplayed()) {
             driver.findElement(By.xpath("//input[contains(@class, 'new-address-next-step-button')]")).click();

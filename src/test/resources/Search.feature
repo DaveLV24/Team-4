@@ -1,4 +1,4 @@
-@regression
+@regressionAO1
 Feature: Search tests
 
   @TC-001-AO
