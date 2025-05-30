@@ -64,7 +64,7 @@ public class TestSearchByDescriptionSteps {
     @Then("^Click on first product which is displayed$")
     public void clickOnFirstProductWhichIsDisplayed() {
         List<WebElement> product = driver.findElements(By.className("item-box"));
-        product.get(0).findElement(By.cssSelector(".product-item>.picture")).click();
+        product.get(0).findElement(By.cssSelector(".product-title")).click();
     }
 
     @And("^The product description should contain sample \"([^\"]*)\"$")
@@ -83,7 +83,7 @@ public class TestSearchByDescriptionSteps {
     public void inAdvancedSearchBlockSelectAParentCategoryElectronics() {
         Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='Cid']")));
         dropdown.selectByValue("7");
-        }
+    }
 
     @And("^The result is displayed \"([^\"]*)\"$")
     public void theResultIsDisplayed(String expectedMessage) {
@@ -101,7 +101,7 @@ public class TestSearchByDescriptionSteps {
     public void inAdvancedSearchBlockSelectASubcategoryElectronicsCellPhones() {
         Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='Cid']")));
         dropdown.selectByValue("9");
-        }
+    }
 
     @And("^Products with sample \"([^\"]*)\" in the title should be displayed$")
     public void productsWithSampleWordInTheTitleShouldBeDisplayed(String keyword) {

@@ -1,10 +1,11 @@
 package stepDefinitions;
 
 import hooks.Hooks;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pageObjects.ProductListPage;
 import pageObjects.ProductPage;
 import pageObjects.ShoppingCartPage;
@@ -13,7 +14,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class AddToCartSteps {
     private WebDriver driver;
@@ -36,49 +36,44 @@ public class AddToCartSteps {
     }
 
     @Then("^I click \"([^\"]*)\" in the menu$")
-    public void clickProductCategory(String product)
-    {
+    public void clickProductCategory(String product) {
         String productLower = product.toLowerCase();
         driver.findElement(By.cssSelector("a[href='/" + productLower + "']")).click();
     }
 
     @Then("^I select \"([^\"]*)\" in \"([^\"]*)\" subcategory")
-    public void selectProduct(String product, String subcategory)
-    {
-        if(Objects.equals(subcategory, ""))
-        {
+    public void selectProduct(String product, String subcategory) {
+        if (Objects.equals(subcategory, "")) {
             productListPage.clickProduct(product);
-        }
-        else {
+        } else {
             productListPage.clickSubcategory(subcategory);
             productListPage.clickProduct(product);
         }
     }
 
     @And("^I input quantity: \"([^\"]*)\"$")
-    public void inputQuantity(String quantity){
+    public void inputQuantity(String quantity) {
         productPage.Qty(quantity);
     }
 
     @And("^I click add to cart$")
-    public void clickAddToCart()
-    {
+    public void clickAddToCart() {
         productPage.clickAddToCart();
     }
 
     @Then("^I should see \"([^\"]*)\" \"([^\"]*)\" in the cart$")
-    public void verifyProductInCart(String qty, String product)
-    {
+    public void verifyProductInCart(String qty, String product) {
         assertEquals(qty, shoppingCartPage.getQty());
         assertEquals(product, shoppingCartPage.getProductName());
     }
 
     @Then("^I click shopping cart$")
-    public void clickShoppingCart(){
+    public void clickShoppingCart() {
         productPage.clickShoppingCart();
     }
+
     @And("^I turn off the notification$")
-    public void turnOffNotification(){
+    public void turnOffNotification() {
         productPage.turnOffNotification();
     }
 
@@ -89,7 +84,7 @@ public class AddToCartSteps {
     }
 
     @And("^I should see empty shopping cart$")
-    public void iShouldSeeEmptyShoppingCart(){
+    public void iShouldSeeEmptyShoppingCart() {
         assertEquals("Your Shopping Cart is empty!", shoppingCartPage.getEmptyMessage());
     }
 
